@@ -122,7 +122,7 @@ export function TableSelector({ tables, dbConfig, onTableSelect, isLoading }: Ta
               <h4 className="text-sm font-medium mb-2 text-gray-900">Columns:</h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm border border-gray-700">
                 {tableInfo.columns.map((col) => (
-                  <div key={col.column_name} className="flex justify-between p-2 bg-gray-50 rounded ">
+                  <div key={col.column_name} className="flex justify-between p-2 bg-gray-50 rounded border border-gray-700">
                     <span className="font-medium text-gray-900">{col.column_name}</span>
                     <span className="text-gray-900">{col.data_type}</span>
                   </div>
