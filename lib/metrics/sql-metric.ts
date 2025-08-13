@@ -87,7 +87,7 @@ export class SQLMetricCalculator {
       
       // Try to parse with sql-parser-cst
       try {
-        const ast = parse(cleanQuery);
+        const ast = parse(cleanQuery, { dialect: 'postgresql' });
         analysis.isValid = true;
         
         // Extract information from AST
