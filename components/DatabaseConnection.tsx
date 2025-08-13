@@ -109,7 +109,11 @@ export function DatabaseConnection({ onConnect, isConnecting }: DatabaseConnecti
                     disabled={isConnecting}
                     className="w-4 h-4 text-blue-600"
                   />
-                  
+                  <div>
+                    <div className="text-sm font-medium text-gray-900">
+                      Use Pre-determined Dataset
+                    </div>
+                  </div>
                 </label>
               </div>
             )}
