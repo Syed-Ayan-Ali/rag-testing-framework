@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { Button } from './ui/button'
 import { Input } from './ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
+import { SUPABASE_CONFIG } from '@/lib/env'
 
 interface DatabaseConnectionProps {
   onConnect: (config: { url: string; anonKey: string }) => void
@@ -19,9 +20,11 @@ export function DatabaseConnection({ onConnect, isConnecting }: DatabaseConnecti
   const [errors, setErrors] = useState<string[]>([])
   
   // Environment variables for pre-determined dataset
-  const predefinedUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-  const predefinedAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-  const predefinedDatasetName = process.env.NEXT_PUBLIC_PREDEFINED_DATASET_NAME || 'Sample Dataset'
+  const predefinedUrl = SUPABASE_CONFIG.url
+  const predefinedAnonKey = SUPABASE_CONFIG.anonKey
+
+  console.log('predefinedUrl', predefinedUrl)
+  console.log('predefinedAnonKey', predefinedAnonKey)
   
   // Check if predefined config is available
   const hasPredefinedConfig = predefinedUrl && predefinedAnonKey
@@ -106,14 +109,7 @@ export function DatabaseConnection({ onConnect, isConnecting }: DatabaseConnecti
                     disabled={isConnecting}
                     className="w-4 h-4 text-blue-600"
                   />
-                  <div>
-                    <div className="text-sm font-medium text-gray-900">
-                      Use Pre-determined Dataset
-                    </div>
-                    <div className="text-xs text-gray-700">
-                      {predefinedDatasetName} (configured in environment)
-                    </div>
-                  </div>
+                  
                 </label>
               </div>
             )}
@@ -179,9 +175,6 @@ export function DatabaseConnection({ onConnect, isConnecting }: DatabaseConnecti
           {/* Pre-determined Dataset Info */}
           {connectionType === 'predefined' && hasPredefinedConfig && (
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-              <div className="text-sm text-blue-800">
-                <strong>{predefinedDatasetName}</strong>
-              </div>
               <div className="text-xs text-blue-600 mt-1">
                 Ready to connect to the pre-configured sample dataset
               </div>
